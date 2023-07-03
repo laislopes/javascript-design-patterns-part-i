@@ -14,17 +14,15 @@ class NegotiationController{
     add(event){
         event.preventDefault();
 
-        let date = new Date(...
-            this.#inputDate.value
-            .split('-')
-            .map((item, index) => item - index % 2));
-   
         let negotiation = new Negotiation(
-            date,
+            DateHelper.textToDate(this.#inputDate.value),
             this.#inputQuantity.value,
             this.#inputValue.value
         )
 
+        let monthDayYear = DateHelper.dateToText(negotiation.date);
+
         console.log(negotiation);
+        console.log(monthDayYear);
     }
 }
