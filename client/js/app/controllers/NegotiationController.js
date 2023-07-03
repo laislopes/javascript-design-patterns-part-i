@@ -4,6 +4,7 @@ class NegotiationController{
     #inputQuantity;
     #inputValue;
     #negotiationList;
+    #negotiationsView;
 
     constructor(){
 
@@ -12,16 +13,15 @@ class NegotiationController{
        this.#inputQuantity = $('#quantity');
        this.#inputValue = $('#value');
        this.#negotiationList = new NegotiationList();
+       this.#negotiationsView = new NegotiationsView($('#negotiationsView'));
+
+       this.#negotiationsView.update(this.#negotiationList);
     }
     add(event){
         event.preventDefault();
-
         this.#negotiationList.add(this.#buildNegotiation());
+        this.#negotiationsView.update(this.#negotiationList);
         this.#clearForm();
-
-        this.#negotiationList.negotiations.length = 0;
-
-        console.log(this.#negotiationList.negotiations);
     }
 
     #buildNegotiation(){
