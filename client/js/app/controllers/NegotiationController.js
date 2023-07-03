@@ -14,8 +14,11 @@ class NegotiationController{
     add(event){
         event.preventDefault();
 
-        // let date = new Date(this.#inputDate.value.split('-'));
-        let date = new Date(this.#inputDate.value.replace(/-/g,','));
+        let date = new Date(...
+            this.#inputDate.value
+            .split('-')
+            .map((item, index) => item - index % 2));
+   
         let negotiation = new Negotiation(
             date,
             this.#inputQuantity.value,
