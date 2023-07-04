@@ -14,7 +14,10 @@ class NegotiationController{
        this.#inputDate = $('#date');
        this.#inputQuantity = $('#quantity');
        this.#inputValue = $('#value');
-       this.#negotiationList = new NegotiationList();
+
+       this.#negotiationList = new NegotiationList(this, function(model) {
+            this.#negotiationsView.update(model);
+       });
 
        this.#negotiationsView = new NegotiationsView($('#negotiationsView'));
        this.#negotiationsView.update(this.#negotiationList);
@@ -27,12 +30,18 @@ class NegotiationController{
     add(event){
         event.preventDefault();
         this.#negotiationList.add(this.#buildNegotiation());
-        this.#negotiationsView.update(this.#negotiationList);
 
         this.#message.text = 'Negotiation added successfully!';
         this.#messageView.update(this.#message);
        
         this.#clearForm();
+    }
+
+    delete(){
+        this.#negotiationList.clear();
+  
+        this.#message.text = 'Negotiations deleted successfully';
+        this.#messageView.update(this.#message);
     }
 
     #buildNegotiation(){
