@@ -1,18 +1,13 @@
 class NegotiationList {
 
     #negotiations;
-    #context;
-    #trap;
 
-    constructor(context, trap){
+    constructor(){
         this.#negotiations = [];
-        this.#context = context;
-        this.#trap = trap;
     }
 
     add(negotiation){
         this.#negotiations.push(negotiation);
-        Reflect.apply(this.#trap, this.#context, [this]);
     }
 
     get negotiations() {
@@ -21,6 +16,5 @@ class NegotiationList {
 
     clear(){
         this.#negotiations = [];
-        Reflect.apply(this.#trap, this.#context, [this]);
     }
 }

@@ -15,8 +15,27 @@ class NegotiationController{
        this.#inputQuantity = $('#quantity');
        this.#inputValue = $('#value');
 
-       this.#negotiationList = new NegotiationList(this, function(model) {
-            this.#negotiationsView.update(model);
+       let self = this;
+
+       this._listaNegociacoes = new Proxy(new ListaNegociacoes(), {
+       
+           get(target, prop, receiver) {
+       
+               if(['adiciona', 'esvazia'].includes(prop) && typeof(target[prop]) == typeof(Function)) {
+       
+                   return function(){
+       
+                     console.log(`método '${prop}' interceptado`);
+       
+                    Reflect.apply(target[prop], target, arguments);
+       
+                     self._negociacoesView.update(target);
+       
+                   }
+            }
+       
+            return Reflect.get(target, prop, receiver);
+         }
        });
 
        this.#negotiationsView = new NegotiationsView($('#negotiationsView'));
