@@ -1,18 +1,16 @@
-/* Código simplório, apenas para fornecer o serviço para a aplicação */
-
 var api = require('../api');
 
 module.exports  = function(app) {
     
-    app.route('/negociacoes/semana')
-        .get(api.listaSemana);
+    app.route('/negotiations/week')
+        .get(api.weekList);
         
-    app.route('/negociacoes/anterior')
-        .get(api.listaAnterior);
+    app.route('/negotiations/lastweek')
+        .get(api.lastWeekList);
         
-    app.route('/negociacoes/retrasada')
-        .get(api.listaRetrasada);  
+    app.route('/negotiations/beforelastweek')
+        .get(api.beforeLastWeekList);  
         
-    app.route('/negociacoes')
-        .post(api.cadastraNegociacao);          
+    app.route('/negotiations')
+        .post(api.registerNegotiation);          
 };
