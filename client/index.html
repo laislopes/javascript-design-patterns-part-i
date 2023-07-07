@@ -34,10 +34,10 @@
     </form>
     
     <div class="text-center">
-        <button class="btn btn-primary text-center" type="button">
+        <button onclick="negotiationController.importNegotiations()" class="btn btn-primary text-center" type="button">
             Import Negotiations
         </button>
-        <button class="btn btn-primary text-center" type="button">
+        <button onclick="negotiationController.delete()" class="btn btn-primary text-center" type="button">
             Delete
         </button>
     </div> 
@@ -47,6 +47,7 @@
     <div id="negotiationsView"></div>
 
     <script src="js/app/models/Negotiation.js"></script>
+    <script src="js/app/helpers/Bind.js"></script>
     <script src="js/app/controllers/NegotiationController.js"></script>
     <script src="js/app/helpers/DateHelper.js"></script>
     <script src="js/app/models/NegotiationList.js"></script>
@@ -54,6 +55,9 @@
     <script src="js/app/views/NegotiationsView.js"></script>
     <script src="js/app/models/Message.js"></script>
     <script src="js/app/views/MessageView.js"></script>
+    <script src="js/app/services/ProxyFactory.js"></script>
+    <script src="js/app/services/NegotiationService.js"></script>
+    <script src="js/app/services/HttpService.js"></script>
     <script>
         let negotiationController = new NegotiationController();
     </script>
